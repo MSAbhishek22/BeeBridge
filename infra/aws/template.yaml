@@ -1,0 +1,48 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  BeeBridge (AWS Builder mini challenge): API Gateway + Lambda hosting the
+  BeeBridge MCP/REST service, DynamoDB as the hosted memory store option,
+  and Amazon Bedrock for senior-friendly summary rephrasing.
+Globals:
+  Function:
+    Runtime: python3.12
+    Timeout: 30
+    MemorySize: 512
+    Environment:
+      Variables:
+        BEEBRIDGE_BEDROCK_MODEL: amazon.nova-micro-v1:0
+Resources:
+  BeeBridgeApi:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../../
+      Handler: beebridge.aws.lambda_entry.handler
+      Description: BeeBridge MCP (Alexa+) + REST API
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref MemoryTable
+        - Statement:
+            - Effect: Allow
+              Action: [bedrock:InvokeModel, bedrock:Converse]
+              Resource: '*'
+      Events:
+        Mcp:
+          Type: Api
+          Properties: { Path: /mcp, Method: ANY }
+        Api:
+          Type: Api
+          Properties: { Path: /api/{proxy+}, Method: ANY }
+        Health:
+          Type: Api
+          Properties: { Path: /health, Method: GET }
+  MemoryTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions: [{ AttributeName: pk, AttributeType: S }]
+      KeySchema: [{ AttributeName: pk, KeyType: HASH }]
+Outputs:
+  ApiUrl:
+    Description: Base URL — set this as the MCP server URL in the Alexa+ Agent Skill
+    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod'

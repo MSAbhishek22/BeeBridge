@@ -1,0 +1,22 @@
+# Alexa+ Agent Skill definition — BeeBridge
+# Primary path: Alexa+ connects to BeeBridge's self-hosted MCP server
+# (Streamable HTTP, protocol 2025-11-25) at https://<your-host>/mcp
+name: beebridge
+description: >
+  Memory companion for seniors. Answers questions from conversations
+  captured by the user's Bee wearable: doctor instructions, medication,
+  appointments, family updates. Also surfaces Ring front-door alerts.
+mcp_server:
+  transport: streamable-http
+  protocol_version: "2025-11-25"
+  url: "https://REPLACE_WITH_YOUR_HOST/mcp"
+  tools:
+    - beebridge_ask
+    - beebridge_today
+    - beebridge_todos
+    - beebridge_sync_bee
+    - beebridge_ring_simulate
+personality: brief   # short, clear sentences — chosen for senior users
+safety:
+  - Bee records only with the user's consent; the Bee hardware switch stays in the user's control.
+  - BeeBridge never shares memory with caregivers unless the user enables it.

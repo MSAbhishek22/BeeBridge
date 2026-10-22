@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BeeBridge — Today</title>
+<style>
+  body{font-family:system-ui,Arial,sans-serif;background:#101418;color:#f5f7fa;margin:0;padding:32px}
+  h1{font-size:44px;margin:0 0 8px} .sub{font-size:22px;color:#bcd; margin-bottom:28px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .card{background:#1b222b;border-radius:16px;padding:24px}
+  .card h2{font-size:28px;margin-top:0;color:#ffd479}
+  li{font-size:24px;line-height:1.5;margin-bottom:10px}
+  .alert{border-left:6px solid #ff8a65}
+  button{font-size:22px;padding:12px 22px;border-radius:12px;border:0;background:#ffd479;cursor:pointer}
+  #askout{font-size:24px;line-height:1.5}
+  input{font-size:22px;padding:12px;width:65%;border-radius:12px;border:0}
+</style>
+</head>
+<body>
+<h1>🐝 BeeBridge — Today</h1>
+<div class="sub">Your Bee remembers, so you don't have to. Large-text summary for Fire TV / Echo Show.</div>
+<div class="grid">
+  <div class="card"><h2>Today's summary</h2><p id="summary" style="font-size:24px;line-height:1.5">Loading…</p></div>
+  <div class="card"><h2>Things to do</h2><ul id="todos"></ul></div>
+  <div class="card alert"><h2>Alerts (Ring)</h2><ul id="alerts"></ul></div>
+  <div class="card"><h2>Recent conversations (Bee)</h2><ul id="convs"></ul></div>
+</div>
+<div class="card" style="margin-top:20px">
+  <h2>Ask BeeBridge</h2>
+  <input id="q" placeholder="What did the doctor say?">
+  <button onclick="ask()">Ask</button>
+  <p id="askout"></p>
+</div>
+<script>
+async function load(){
+  const d = await (await fetch('/api/today')).json();
+  document.getElementById('summary').textContent = d.summary;
+  document.getElementById('todos').innerHTML = d.todos.map(t=>`<li>${t.text}${t.due_text?` <small>(${t.due_text})</small>`:''}</li>`).join('') || '<li>All done 🎉</li>';
+  document.getElementById('alerts').innerHTML = d.alerts.map(a=>`<li>${a.text}</li>`).join('') || '<li>No alerts</li>';
+  document.getElementById('convs').innerHTML = d.conversations.map(c=>`<li>${c.title}</li>`).join('');
+}
+async function ask(){
+  const q = document.getElementById('q').value;
+  const d = await (await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q})})).json();
+  document.getElementById('askout').textContent = d.answer;
+}
+load(); setInterval(load, 30000);
+</script>
+</body>
+</html>

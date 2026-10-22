@@ -1,0 +1,15 @@
+[project]
+name = "beebridge"
+version = "0.1.0"
+description = "BeeBridge — a memory companion for seniors: Bee wearable capture -> Alexa+ MCP answers, Ring alerts, Fire TV summary"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = ["fastapi>=0.115", "uvicorn[standard]>=0.30", "pydantic>=2.7", "httpx>=0.27", "boto3>=1.34"]
+
+[project.scripts]
+beebridge = "beebridge.main:run"
+beebridge-demo = "beebridge.demo:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
