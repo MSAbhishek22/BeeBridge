@@ -25,7 +25,7 @@ Privacy is a feature, not a footnote: Bee records only with consent, memory is s
 
 ## What to submit — checklist
 - [ ] Text description (above)
-- [ ] GitHub repo: **private**, shared with `testing@devpost.com` and the Amazon reviewers below (see "Repo sharing" — do this at submission time; invitations expire in 7 days)
+- [x] GitHub repo: https://github.com/MSAbhishek22/BeeBridge — code pushed (commit `e2ab8a8`, 40 files, blob-verified). NOTE: the repo is currently **PUBLIC** (it was created that way) — flip to private in Settings if sticking with the original plan, then share with `testing@devpost.com` and the Amazon reviewers below (see "Repo sharing" — do this at submission time; invitations expire in 7 days)
 - [ ] Demo video < 3 min, public, English (script: `docs/demo-script.md`)
 - [ ] Product feedback (paste `docs/product-feedback.md`)
 - [ ] Friction log (paste `docs/friction-log.md`) — up to 10% judging bonus
@@ -39,7 +39,7 @@ Repo Settings → Collaborators → Add people:
 
 ## Open Source mini challenge — extra fields
 - **Project:** Bee Memory MCP — a *separate, additional* open-source project (MIT), built during the window, so this entry is valid even though the main BeeBridge repo is private.
-- **Repo URL:** `https://github.com/MSAbhishek22/bee-memory-mcp` (create as a PUBLIC repo, then push the local `bee-memory-mcp` project)
+- **Repo URL:** https://github.com/MSAbhishek22/bee-memory-mcp (PUBLIC, live, commit `c879ff7`)
 - **GitHub username:** `MSAbhishek22`
 - **Contribution URL:** same as repo URL (new open-source project, MIT license file included)
 - **Description:** Bee Memory MCP is a new open-source MCP server (MIT) that makes Bee wearable memory queryable by any MCP client (Alexa+, desktop agents, custom tools). It ingests Bee conversations via the Bee CLI / sync exports / Bee MCP, extracts facts, medication, appointments and to-dos, and serves them over MCP (Streamable HTTP, 2025-11-25), with optional Amazon Bedrock summaries. It matters because ambient memory help — for seniors, people with ADHD, or hearing loss — should be inspectable, self-hostable, and free of lock-in.
