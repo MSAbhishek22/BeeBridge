@@ -25,17 +25,15 @@ Privacy is a feature, not a footnote: Bee records only with consent, memory is s
 
 ## What to submit — checklist
 - [ ] Text description (above)
-- [x] GitHub repo: https://github.com/MSAbhishek22/BeeBridge — code pushed (commit `e2ab8a8`, 40 files, blob-verified). NOTE: the repo is currently **PUBLIC** (it was created that way) — flip to private in Settings if sticking with the original plan, then share with `testing@devpost.com` and the Amazon reviewers below (see "Repo sharing" — do this at submission time; invitations expire in 7 days)
+- [x] GitHub repo: https://github.com/MSAbhishek22/BeeBridge — code pushed (commit `e2ab8a8`, 40 files, blob-verified). **Visibility DECIDED 2026-10-22: PUBLIC** (user's choice). With the MIT license included, this satisfies the hackathon's "public and open source" repo route — judges and the Amazon team can review it directly, no collaborator invites needed.
 - [ ] Demo video < 3 min, public, English (script: `docs/demo-script.md`)
 - [ ] Product feedback (paste `docs/product-feedback.md`)
 - [ ] Friction log (paste `docs/friction-log.md`) — up to 10% judging bonus
 - [ ] Tracks/mini challenges selected (above)
 - [ ] "Built during the window" explanation (in description above)
 
-## Repo sharing (per hackathon instructions)
-Repo Settings → Collaborators → Add people:
-`knmeiss`, `giolaq`, `anishamalde`, `mosesroth`, `emersonsklar` — and share with `testing@devpost.com`.
-⚠️ Add them **when you submit**, not earlier: GitHub invitations expire after 7 days. If any invitation has lapsed, re-send it from the same Collaborators page.
+## Repo sharing
+**Not required anymore:** the repo is public (decided 2026-10-22), which is one of the two routes the hackathon accepts (public + open-source license included). The Amazon reviewers (`knmeiss`, `giolaq`, `anishamalde`, `mosesroth`, `emersonsklar`) and `testing@devpost.com` can review https://github.com/MSAbhishek22/BeeBridge directly. (The collaborator-invite route only applies to private repos; if the repo is ever flipped back to private, add those five collaborators at submission time — invitations expire after 7 days.)
 
 ## Open Source mini challenge — extra fields
 - **Project:** Bee Memory MCP — a *separate, additional* open-source project (MIT), built during the window, so this entry is valid even though the main BeeBridge repo is private.
