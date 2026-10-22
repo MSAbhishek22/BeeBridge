@@ -9,8 +9,9 @@ BeeBridge: A Memory Companion for Seniors
 Bee remembers the conversation. Alexa+ answers the question. Ring watches the door. BeeBridge connects all three into a second memory for seniors.
 
 ## Tracks / mini challenges to select
-- **Primary track: Bee** (project connects to real data recorded/processed through Bee, via Bee CLI + Bee MCP + Bee sync exports — `src/beebridge/bee/`)
-- Also demonstrates: **Alexa+** (self-hosted MCP server, spec 2025-11-25, Streamable HTTP) and **Ring** (simulator/API events)
+- **Primary track: Alexa+** — DECIDED 2026-10-22. The submission's centrepiece is a self-hosted MCP server (spec 2025-11-25, Streamable HTTP) + Agent Skill answering from Bee memory (`src/beebridge/alexa/`). Rationale: $25,000 first prize vs Bee's $12,000, and the MCP server is fully judge-runnable evidence (see placement strategy below).
+- Data source, featured throughout: **Bee** (real Bee data via Bee CLI + Bee MCP + Bee sync exports — `src/beebridge/bee/`)
+- Also demonstrates: **Ring** (simulator/API events) and a **Fire TV** summary UI
 - **Mini challenge: AWS Builder** — Amazon Bedrock (Converse) for summaries; Lambda + API Gateway + DynamoDB SAM template (`infra/aws/template.yaml`)
 - **Mini challenge: Open Source** — see fields below
 

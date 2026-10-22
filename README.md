@@ -1,6 +1,6 @@
 # 🐝 BeeBridge — A Memory Companion for Seniors
 
-**Build, Ship, Shape: Amazon Developer Hackathon** · Primary track: **Bee** · Also built for: **Alexa+**, **Ring** · Mini challenges: **AWS Builder**, **Open Source**
+**Build, Ship, Shape: Amazon Developer Hackathon** · Primary track: **Alexa+** (self-hosted MCP server) · Data source: **Bee** wearable memory · Also: **Ring**, **Fire TV** UI · Mini challenges: **AWS Builder**, **Open Source**
 
 BeeBridge turns conversations captured by a **Bee wearable** (or Bee on Apple Watch) into a memory a senior can *talk to*:
 
