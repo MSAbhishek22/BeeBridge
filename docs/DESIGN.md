@@ -40,6 +40,19 @@ own backgrounds; glass panels sit on a dark enough base to hold that ratio.
 - **Depth with restraint:** 3D tilt stays on the hero stage and device cards
   (the two places touch/mouse exploration is invited), nowhere else.
 
+## v3.1 — interaction pass (from demo research)
+
+Top interactive demos convert because visitors *do the core workflow themselves*
+(multi-path, realistic data, result in under 3 minutes). So v3.1 adds the
+**Memory Lab**: visitors paste/edit a conversation, a miniature of the real
+extractor classifies its sentences (medication / appointment / reminder /
+delivery / call / fact), and the chat then answers from *their* memory first.
+Micro-detail layer, all feedback under ~200ms per microinteraction research:
+typing indicator before answers, a bee that rides the scroll-progress bar,
+time-aware TV greeting, tappable TV rows, copy-link toast, skip link,
+`aria-live` chat log, and a scripted audit that verifies every button, anchor
+and JS binding before each push.
+
 ## Rules we don't break
 
 1. Every quote on the page is a verbatim output of the shipped software or a

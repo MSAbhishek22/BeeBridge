@@ -103,9 +103,9 @@ h2{font-size:clamp(32px,4.6vw,44px);line-height:1.12;margin:0 0 14px;font-weight
 .flightpath{position:absolute;inset:0;overflow:visible;pointer-events:none}
 .flightpath path{stroke:var(--amber);stroke-width:2.5;fill:none;stroke-dasharray:7 9;opacity:.55;animation:dashmove 26s linear infinite}
 @keyframes dashmove{to{stroke-dashoffset:-640}}
-.stage{perspective:1400px;margin:44px auto 4px;max-width:920px;position:relative}
+.stage{perspective:1400px;margin:44px auto 4px;max-width:1080px;position:relative}
 .stage-in{position:relative;transform-style:preserve-3d;transition:transform .35s ease}
-.tv{background:var(--bgdeep);border-radius:22px;padding:14px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.tv{background:var(--bgdeep);border-radius:22px;padding:14px;box-shadow:var(--shadow);border:1px solid var(--line);max-width:830px;margin:0 auto}
 .tv .screen{background:linear-gradient(160deg,var(--panel2),var(--panel));border-radius:14px;padding:26px 30px;text-align:left;min-height:300px;position:relative;overflow:hidden}
 .tv h3{margin:0 0 4px;font-size:30px;color:var(--gold);font-family:var(--display)}
 .tv .date{color:var(--soft);font-size:17px;margin-bottom:14px}
@@ -116,10 +116,32 @@ h2{font-size:clamp(32px,4.6vw,44px);line-height:1.12;margin:0 0 14px;font-weight
 .tv .stand{width:170px;height:14px;background:var(--bgdeep);margin:10px auto 0;border-radius:0 0 12px 12px}
 .chip{position:absolute;padding:14px 18px;border-radius:16px;background:var(--panel);backdrop-filter:blur(var(--panelblur));border:1px solid var(--line);box-shadow:var(--shadow);font-size:17px;line-height:1.45;max-width:300px;text-align:left;z-index:3}
 .chip b{display:block;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
-.chip.ask{left:-26px;top:36px;transform:translateZ(70px)} .chip.ask b{color:var(--sky)}
-.chip.ring{right:-22px;bottom:44px;transform:translateZ(90px)} .chip.ring b{color:var(--mint)}
+.chip.ask{left:0;top:30px;transform:translateZ(70px)} .chip.ask b{color:var(--sky)}
+.chip.ring{right:0;bottom:40px;transform:translateZ(90px)} .chip.ring b{color:var(--mint)}
 .chip .ans{color:var(--gold)}
-@media (max-width:780px){.chip{position:static;max-width:none;margin:12px 0;transform:none}.stage-in{transform:none!important}.flightpath{display:none}}
+@media (max-width:1120px){.chip{position:static;max-width:none;margin:12px 0;transform:none}.stage-in{transform:none!important}.flightpath{display:none}}
+
+/* v3.1 additions: skip link, scroll bee, typing, lab, toast */
+.skiplink{position:absolute;left:-999px;top:0;background:var(--gold);color:#1D1503;font-weight:800;padding:12px 20px;border-radius:0 0 14px 0;z-index:99}
+.skiplink:focus{left:0}
+#scrollbar{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--gold),var(--amber));width:0;z-index:80}
+#scrollbee{position:fixed;top:-7px;left:0;font-size:17px;z-index:81;transform:translateX(-50%);pointer-events:none;filter:drop-shadow(0 2px 3px rgba(0,0,0,.4))}
+.typing{display:inline-flex;gap:5px;padding:4px 2px}
+.typing i{width:9px;height:9px;border-radius:50%;background:var(--gold);display:block;animation:tblink 1s infinite}
+.typing i:nth-child(2){animation-delay:.18s}.typing i:nth-child(3){animation-delay:.36s}
+@keyframes tblink{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+.askrow{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.askrow input{flex:1;min-width:240px;font-family:inherit;font-size:18px;padding:13px 18px;border-radius:999px;border:2px solid var(--line);background:var(--bgdeep);color:var(--ink);min-height:50px}
+.askrow input::placeholder{color:var(--faint)}
+.askbtn{font-family:inherit;background:var(--panel2);color:var(--gold);border:2px solid var(--gold);font-size:17.5px;font-weight:800;padding:12px 24px;border-radius:999px;cursor:pointer;min-height:50px}
+.lab textarea{width:100%;font-family:inherit;font-size:18.5px;line-height:1.55;padding:18px 20px;border-radius:16px;border:2px solid var(--line);background:var(--bgdeep);color:var(--ink);min-height:150px;resize:vertical}
+.labmem{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:16px}
+.memcard{border:1.5px solid var(--gold);border-radius:14px;padding:14px 16px;font-size:17px;background:var(--panel2);animation:pop .3s ease}
+.memcard b{display:block;font-size:12.5px;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:4px}
+.labchips{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--gold);color:#1D1503;font-weight:800;font-size:17px;padding:13px 26px;border-radius:999px;opacity:0;pointer-events:none;transition:all .3s;z-index:90;box-shadow:var(--shadow)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tvrow{cursor:pointer} .tvrow:hover{background:rgba(245,197,66,.05)}
 
 /* stats */
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:44px 0 0}
@@ -214,12 +236,15 @@ footer{border-top:1px solid var(--line);margin-top:70px;padding:34px 22px 44px;t
 </style>
 </head>
 <body>
+<a class="skiplink" href="#demo">Skip to the live demo</a>
+<div id="scrollbar"></div><div id="scrollbee" aria-hidden="true">🐝</div>
 <div class="grain"></div>
+<div class="toast" id="toast" role="status"></div>
 
 <nav><div class="navin">
   <a class="brand" href="#top"><span class="bee">🐝</span> BeeBridge</a>
   <div class="navlinks">
-    <a href="#fade">The problem</a><a href="#demo">Live demo</a><a href="#devices">Devices</a>
+    <a href="#fade">The problem</a><a href="#demo">Live demo</a><a href="#lab">Try it yourself</a><a href="#devices">Devices</a>
     <a href="#features">Features</a><a href="#judges">For judges</a>
     <div class="themes" role="group" aria-label="Colour theme">
       <button data-settheme="honey" aria-pressed="true">🌙 Honey</button>
@@ -251,12 +276,12 @@ footer{border-top:1px solid var(--line);margin-top:70px;padding:34px 22px 44px;t
         <div class="chip ask"><b>🗣 You ask Alexa</b>“What did the doctor say about my next appointment?”<br><span class="ans">→ “Your blood pressure has improved and is now normal…”</span></div>
         <div class="tv">
           <div class="screen">
-            <h3>Good morning, Margaret ☀️</h3>
-            <div class="date">Here's your day — Friday</div>
+            <h3><span id="greet">Good morning</span>, Margaret ☀️</h3>
+            <div class="date">Here's your day — tap a row when it's done</div>
             <div class="tvrow"><span class="box"></span><span>Take Metformin 500mg — every morning with breakfast</span></div>
             <div class="tvrow"><span class="box"></span><span>Doctor appointment <span class="due">(Friday at 10am)</span></span></div>
             <div class="tvrow"><span class="box"></span><span>Bring your blood sugar log to the appointment</span></div>
-            <div class="tvrow done" id="tvPkg"><span class="box"></span><span>Package expected — watch for delivery <span class="due">(tomorrow)</span></span></div>
+            <div class="tvrow" id="tvPkg"><span class="box"></span><span>Package expected — watch for delivery <span class="due">(tomorrow)</span></span></div>
           </div>
           <div class="stand"></div>
         </div>
@@ -306,8 +331,8 @@ footer{border-top:1px solid var(--line);margin-top:70px;padding:34px 22px 44px;t
     <p class="lede">These answers come from the actual BeeBridge program, run on its bundled Bee conversations —
     a doctor's call, a call with Mom, a pharmacy visit. Nothing here is typed by a copywriter.</p>
     <div class="demo panelish">
-      <div class="chat" id="chat">
-        <div class="msg a"><span class="who">BeeBridge</span>Hello! I remember 4 conversations for you. Ask me anything — tap a question below.</div>
+      <div class="chat" id="chat" role="log" aria-live="polite" aria-label="Conversation with BeeBridge">
+        <div class="msg a"><span class="who">BeeBridge</span>Hello! I remember 4 conversations for you. Ask me anything — tap a question below, or type your own.</div>
       </div>
       <div class="qbtns">
         <button class="qbtn" data-k="doctor">🩺 What did the doctor say about my next appointment?</button>
@@ -315,10 +340,35 @@ footer{border-top:1px solid var(--line);margin-top:70px;padding:34px 22px 44px;t
         <button class="qbtn" data-k="family">👨‍👩‍👧 What did Mom say?</button>
         <button class="qbtn" data-k="today">☀️ What do I need to do today?</button>
       </div>
+      <div class="askrow">
+        <input id="askInput" type="text" placeholder="…or type your own question — try “when is my appointment?”" aria-label="Type your own question">
+        <button class="askbtn" id="askBtn">Ask BeeBridge</button>
+      </div>
       <div class="ringbar">
         <button class="ringbtn" id="ringbtn">🔔 Simulate: Ring sees a package delivered</button>
         <span id="ringout"></span>
       </div>
+    </div>
+  </section>
+
+  <!-- ============ MEMORY LAB ============ -->
+  <section id="lab" class="reveal">
+    <p class="kicker">Try the solution yourself</p>
+    <h2>Give it a conversation. Watch it remember.</h2>
+    <p class="lede">This is the part most demos won't let you touch. Below is a conversation — edit it, write your own,
+    then press the button. A pocket-sized version of BeeBridge's extractor runs right here in your browser and files
+    away the medicines, appointments and to-dos it finds. Then ask about them in the demo chat above.</p>
+    <div class="demo panelish lab">
+      <label for="labText" style="font-weight:800;display:block;margin-bottom:10px">✍️ A conversation Bee just heard:</label>
+      <textarea id="labText">Dr. Rao said my vitamin B12 is low. Please take B12 1000mcg every morning after breakfast. My next appointment is on Monday at 9am. Remember to bring my previous reports to the appointment. A courier package is expected tomorrow. Please call Ananya tomorrow to confirm dinner plans.</textarea>
+      <div class="ringbar" style="border-top:none;margin-top:16px;padding-top:0">
+        <button class="ringbtn" id="labBtn">🧠 Remember this conversation</button>
+        <span id="labStatus" role="status" style="font-size:18px;color:var(--soft)"></span>
+      </div>
+      <div class="labmem" id="labMem" aria-live="polite"></div>
+      <div class="labchips" id="labChips"></div>
+      <p style="color:var(--faint);font-size:16px;margin:16px 0 0">Honest fine print: this in-browser miniature uses simple patterns.
+      The real BeeBridge runs the full extractor on every Bee conversation — same idea, full fidelity, on your own computer.</p>
     </div>
   </section>
 
@@ -478,6 +528,7 @@ pytest                                       # 27 tests</pre>
     <p class="lede" style="font-size:18px">Companion open-source project:
     <a href="https://github.com/MSAbhishek22/bee-memory-mcp">Bee Memory MCP</a> — Bee memory for any MCP client.
     Product feedback and the friction log live in the repo under <b>docs/</b>.</p>
+    <p><button class="askbtn" id="copyBtn">🔗 Copy this live demo link</button></p>
   </section>
 
   <!-- ============ FAQ ============ -->
@@ -542,17 +593,60 @@ const QUESTIONS = {
   today: "What do I need to do today?"
 };
 const chat = document.getElementById('chat');
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 function bubble(cls, who, text){
   const d = document.createElement('div');
   d.className = 'msg ' + cls;
   const w = document.createElement('span'); w.className = 'who'; w.textContent = who;
   d.appendChild(w); d.appendChild(document.createTextNode(text));
-  chat.appendChild(d); d.scrollIntoView({behavior:'smooth', block:'nearest'});
+  chat.appendChild(d); d.scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth', block:'nearest'});
+  return d;
 }
-document.querySelectorAll('.qbtn').forEach(b => b.addEventListener('click', () => {
-  bubble('q', 'You ask', QUESTIONS[b.dataset.k]);
-  setTimeout(() => bubble('a', 'BeeBridge answers', ANSWERS[b.dataset.k]), 260);
-}));
+function answerWithTyping(text){
+  if (reduceMotion){ bubble('a', 'BeeBridge answers', text); return; }
+  const t = bubble('a', 'BeeBridge is remembering', '');
+  const dots = document.createElement('span'); dots.className = 'typing';
+  dots.innerHTML = '<i></i><i></i><i></i>'; t.appendChild(dots);
+  setTimeout(() => { t.querySelector('.who').textContent = 'BeeBridge answers'; dots.remove(); t.appendChild(document.createTextNode(text)); }, 620);
+}
+/* Memory the visitor adds in the Memory Lab lives here */
+let LABMEM = [];
+function labByKind(kind){ return LABMEM.filter(m => m.kind === kind); }
+function routeAnswer(qRaw){
+  const q = qRaw.toLowerCase();
+  if (/(medication|medicine|tablet|dose|vitamin|b12|take)/.test(q) && labByKind('medication').length)
+    return "From your conversation: " + labByKind('medication').map(m => m.text).join(' ');
+  if (/(appointment|doctor|rao|when)/.test(q) && labByKind('appointment').length)
+    return "From your conversation: " + LABMEM.filter(m => m.kind === 'appointment' || m.kind === 'reminder').map(m => m.text).join(' ');
+  if (/(package|delivery|courier|arrive)/.test(q) && labByKind('delivery').length)
+    return "From your conversation: " + labByKind('delivery').map(m => m.text).join(' ');
+  if (/(call|phone)/.test(q) && labByKind('call').length)
+    return "From your conversation: " + labByKind('call').map(m => m.text).join(' ');
+  for (const k of Object.keys(QUESTIONS)) if (q.includes(k === 'family' ? 'mom' : k)) return ANSWERS[k];
+  if (/doctor|appointment|patel/.test(q)) return ANSWERS.doctor;
+  if (/medication|medicine|tablet|dose/.test(q)) return ANSWERS.meds;
+  if (/mom|mother|family/.test(q)) return ANSWERS.family;
+  if (/today|day|do|list|summary/.test(q)){
+    let base = ANSWERS.today;
+    if (LABMEM.length) base += " From your conversation I also remember: " + LABMEM.map(m => m.text).join(' ');
+    return base;
+  }
+  const words = q.split(/\W+/).filter(w => w.length > 3);
+  const hit = LABMEM.find(m => words.some(w => m.text.toLowerCase().includes(w)));
+  if (hit) return "From your conversation: " + hit.text;
+  return "I remember the doctor's visit, the medication, Mom's call and today's list" +
+    (LABMEM.length ? ", plus the conversation you just gave me" : "") +
+    ". Try asking about medication, the appointment, the package — or your day.";
+}
+function ask(qRaw){
+  const q = (qRaw || '').trim(); if (!q) return;
+  bubble('q', 'You ask', q);
+  answerWithTyping(routeAnswer(q));
+}
+document.querySelectorAll('.qbtn').forEach(b => b.addEventListener('click', () => ask(QUESTIONS[b.dataset.k])));
+const askInput = document.getElementById('askInput');
+document.getElementById('askBtn').addEventListener('click', () => { ask(askInput.value); askInput.value = ''; askInput.focus(); });
+askInput.addEventListener('keydown', e => { if (e.key === 'Enter'){ ask(askInput.value); askInput.value = ''; } });
 let delivered = false;
 document.getElementById('ringbtn').addEventListener('click', () => {
   if (delivered) return; delivered = true;
@@ -560,6 +654,68 @@ document.getElementById('ringbtn').addEventListener('click', () => {
   bubble('a', 'Ring · Front door', "Package delivered. Alexa announced it — and the delivery to-do completed itself.");
   const row = document.getElementById('tvPkg');
   if (row){ row.classList.add('done'); row.querySelector('.box').textContent = '✓'; }
+});
+
+/* ---- Memory Lab: a miniature of the real extractor ---- */
+function classify(sentence){
+  const s = sentence.trim(); if (!s) return null;
+  const low = s.toLowerCase();
+  if (/\btake\b/.test(low) && /(mg|mcg|ml|tablet|every|morning|night|dinner|breakfast)/.test(low)) return {kind:'medication', icon:'💊', text: s};
+  if (/appointment/.test(low)) return {kind:'appointment', icon:'📅', text: s};
+  if (/\bbring\b/.test(low)) return {kind:'reminder', icon:'🎒', text: s};
+  if (/(package|delivery|courier)/.test(low)) return {kind:'delivery', icon:'📦', text: s};
+  if (/\bcall\b/.test(low)) return {kind:'call', icon:'📞', text: s};
+  if (/(visit|coming|will be)/.test(low)) return {kind:'plan', icon:'🗓️', text: s};
+  return {kind:'fact', icon:'🧠', text: s};
+}
+document.getElementById('labBtn').addEventListener('click', () => {
+  const raw = document.getElementById('labText').value;
+  const sentences = raw.split(/(?<=[.!?])\s+/);
+  LABMEM = sentences.map(classify).filter(Boolean);
+  const mem = document.getElementById('labMem'); mem.innerHTML = '';
+  LABMEM.forEach(m => {
+    const c = document.createElement('div'); c.className = 'memcard';
+    const b = document.createElement('b'); b.textContent = m.icon + ' ' + m.kind;
+    c.appendChild(b); c.appendChild(document.createTextNode(m.text)); mem.appendChild(c);
+  });
+  document.getElementById('labStatus').textContent = LABMEM.length
+    ? "✓ Remembered " + LABMEM.length + " things. Now ask about them in the chat above."
+    : "Nothing to remember there yet — try adding a medicine, an appointment or a package.";
+  const chips = document.getElementById('labChips'); chips.innerHTML = '';
+  const sug = [];
+  if (labByKind('medication').length) sug.push(["💊 Ask: my medication", "What medication do I need to take?"]);
+  if (labByKind('appointment').length) sug.push(["📅 Ask: my appointment", "When is my appointment?"]);
+  if (labByKind('delivery').length) sug.push(["📦 Ask: my package", "Is a package coming?"]);
+  sug.forEach(([label, q]) => {
+    const btn = document.createElement('button'); btn.className = 'qbtn'; btn.textContent = label;
+    btn.addEventListener('click', () => { document.getElementById('demo').scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth'}); setTimeout(() => ask(q), reduceMotion ? 0 : 450); });
+    chips.appendChild(btn);
+  });
+});
+
+/* ---- micro-details: greeting, scroll bee, TV toggles, copy link, toast ---- */
+(function(){
+  const h = new Date().getHours();
+  document.getElementById('greet').textContent = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+})();
+const sbar = document.getElementById('scrollbar'), sbee = document.getElementById('scrollbee');
+addEventListener('scroll', () => {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  const p = max > 0 ? (scrollY / max) : 0;
+  sbar.style.width = (p * 100) + '%'; sbee.style.left = (p * 100) + '%';
+}, {passive:true});
+document.querySelectorAll('.tvrow').forEach(r => r.addEventListener('click', () => {
+  r.classList.toggle('done');
+  r.querySelector('.box').textContent = r.classList.contains('done') ? '✓' : '';
+}));
+function toast(msg){
+  const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2400);
+}
+document.getElementById('copyBtn').addEventListener('click', async () => {
+  const url = 'https://msabhishek22.github.io/BeeBridge/';
+  try { await navigator.clipboard.writeText(url); toast('✓ Live demo link copied'); }
+  catch(e){ toast('Link: ' + url); }
 });
 
 /* ---- scroll reveal ---- */
