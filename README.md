@@ -17,7 +17,7 @@ Your parent wears a small **Bee** device. It remembers their real conversations 
 Later, they don't open an app. They don't type anything. They just ask out loud:
 
 > **"Alexa, what did the doctor say about my next appointment?"**
-> *"Friday at 10 a.m. Your blood pressure has improved and is now normal. Remember to bring your blood sugar log."*
+> *"Your blood pressure has improved and is now normal. Your cholesterol test results were better than last time. Remember to bring your blood sugar log to the appointment."*
 
 ![Asking BeeBridge](docs/images/ask.svg)
 

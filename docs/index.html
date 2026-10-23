@@ -47,8 +47,8 @@
     <h2>Ask Alexa, get an answer from real life</h2>
     <button class="ask" data-k="doctor">🩺 “Alexa, what did the doctor say about my next appointment?”</button>
     <button class="ask" data-k="meds">💊 “What medication do I need to take?”</button>
-    <button class="ask" data-k="family">👨‍👩‍👧 “What did my daughter say?”</button>
-    <button class="ask" data-k="day">☀️ “Can you summarize my day?”</button>
+    <button class="ask" data-k="family">👨‍👩‍👧 “What did Mom say?”</button>
+    <button class="ask" data-k="today">☀️ “What do I need to do today?”</button>
     <p id="answer">Tap a question above — these answers come from the real BeeBridge software, run on its sample conversations.</p>
   </div>
 
@@ -60,8 +60,8 @@
 
   <div class="card">
     <h2>Ring watches the door</h2>
-    <p>Bee heard on Tuesday: <i>“a package is expected tomorrow.”</i> When Ring sees it arrive,
-    Alexa announces it — and the reminder above completes itself.</p>
+    <p>Bee heard, in a call with Mom: <i>“a package is expected and the delivery is arriving tomorrow.”</i>
+    When Ring sees it arrive, Alexa announces it — and the reminder above completes itself.</p>
     <button class="ring" id="ringbtn">🔔 Simulate: package delivered</button>
     <p id="ringout"></p>
   </div>
@@ -96,30 +96,32 @@
 </main>
 <script>
 const ANSWERS = {
-  doctor: "Friday at 10 a.m. Your blood pressure has improved and is now normal. Remember to bring your blood sugar log.",
-  meds: "Your follow-up appointment is on Friday at 10 a.m. Dr. Patel said your medication is Metformin 500 mg: take one tablet with breakfast every day. Vitamin D supplement: take one after dinner.",
-  family: "Mom called and said lunch is at her place on Sunday at 1 p.m. and Priya will bring dessert. Your daughter Priya called and said she'll visit on Sunday.",
-  day: "Today you have: Take one Metformin tablet with breakfast (every day); Package delivery expected (tomorrow). You had 3 conversations captured by Bee, most recently: Pharmacy refill pickup."
+  doctor: "Appointments: Doctor appointment (on Friday at 10am). From the doctor: Dr Patel said your blood pressure has improved and is now normal. Your cholesterol test results were better than last time. Remember to bring your blood sugar log to the appointment.",
+  meds: "About your medication: Take Metformin 500mg — Please take Metformin 500mg every morning with breakfast.; Take Vitamin D — The pharmacist reminded me to take Vitamin D every night after dinner.",
+  family: "From 'Call with Mom': Mom said she will visit on Sunday afternoon. She asked me to call Priya tomorrow to confirm the family lunch. Mom said a package is expected and the delivery is arriving tomorrow.",
+  today: "Today you have: Take Metformin 500mg — Please take Metformin 500mg every morning with breakfast.; Doctor appointment (on Friday at 10am); Bring your blood sugar log to the appointment; Call Priya tomorrow (tomorrow); Package expected — watch for delivery (tomorrow); Pick up / buy fresh vegetables (Sunday). You had 4 conversations captured by Bee, most recently: Morning note to self."
 };
 const TODOS = [
-  { text: "Take one Metformin tablet with breakfast", due: "every day", id: "med" },
-  { text: "Package delivery expected", due: "tomorrow", id: "pkg" }
+  { text: "Take Metformin 500mg — Please take Metformin 500mg every morning with breakfast.", due: "", id: "med" },
+  { text: "Doctor appointment", due: "on Friday at 10am", id: "appt" },
+  { text: "Bring your blood sugar log to the appointment", due: "", id: "log" },
+  { text: "Package expected — watch for delivery", due: "tomorrow", id: "pkg" }
 ];
 document.querySelectorAll('button.ask').forEach(b => {
   b.addEventListener('click', () => {
     document.getElementById('answer').textContent = '“' + ANSWERS[b.dataset.k] + '”';
   });
 });
-document.getElementById('todaysummary').textContent = ANSWERS.day;
+document.getElementById('todaysummary').textContent = ANSWERS.today;
 function renderTodos(donePkg) {
   document.getElementById('todos').innerHTML = TODOS.map(t =>
     '<div class="todo">' + (donePkg && t.id === 'pkg' ? '✅ ' : '⬜ ') + t.text +
-    ' <span class="due">(' + t.due + ')</span>' +
+    (t.due ? ' <span class="due">(' + t.due + ')</span>' : '') +
     (donePkg && t.id === 'pkg' ? ' <span class="done">— Done ✓</span>' : '') + '</div>').join('');
 }
 renderTodos(false);
 document.getElementById('ringbtn').addEventListener('click', () => {
-  document.getElementById('ringout').textContent = '🔊 Alexa announces: “Your package has arrived.”';
+  document.getElementById('ringout').textContent = '🔊 Alexa announces: “Your package has arrived at the front door. That completes the delivery you were expecting from your Bee notes.”';
   renderTodos(true);
 });
 </script>
