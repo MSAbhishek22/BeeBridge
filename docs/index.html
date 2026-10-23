@@ -25,7 +25,7 @@
 }
 [data-theme="paper"]{
   --bg:#F7F1E5; --bgdeep:#EFE6D2; --panel:#FFFFFF; --panel2:#FFF9EC; --panelblur:0px;
-  --ink:#241B10; --soft:#5C4C33; --faint:#8A7757; --gold:#A86E0C; --amber:#C75B2B;
+  --ink:#241B10; --soft:#5C4C33; --faint:#6E5B3C; --gold:#8F5E08; --amber:#C75B2B;
   --sky:#2C5F9E; --mint:#2E7D46; --rose:#B83A5A; --line:#E2D5B8;
   --note:#FFE98A; --notetext:#3A2E12; --paper:#FFFDF6; --paperink:#2B2118;
   --display:"Newsreader",Georgia,serif; --navbg:rgba(247,241,229,.85);
@@ -35,6 +35,8 @@
     radial-gradient(760px 520px at -8% 26%, rgba(168,110,12,.08), transparent 60%),
     linear-gradient(180deg,#FBF7EC, #F7F1E5 30%);
 }
+[data-theme="paper"] .btn.gold, [data-theme="paper"] .ringbtn, [data-theme="paper"] .step .num{background:linear-gradient(145deg,#E9B83B,#D98E32)}
+[data-theme="paper"] .themes button[aria-pressed="true"]{background:#E9B83B;color:#1D1503}
 [data-theme="glass"]{
   --bg:#171233; --bgdeep:#100C26; --panel:rgba(255,255,255,.07); --panel2:rgba(255,255,255,.11); --panelblur:14px;
   --ink:#F4F1FF; --soft:#CFC8EE; --faint:#9A90C6; --gold:#FFD166; --amber:#FF9E7A;
@@ -51,7 +53,9 @@
 /* ============ BASE ============ */
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;font-size:19px;line-height:1.6;background:var(--bg);transition:background .4s,color .4s}
+body{margin:0;color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;font-size:19px;line-height:1.6;background:var(--bg);transition:background .4s,color .4s;overflow-x:clip}
+.tablewrap{overflow-x:auto;border-radius:18px}
+.tablewrap table{min-width:640px}
 body:before{content:"";position:fixed;inset:0;z-index:-2;background:var(--bgfx);transition:opacity .4s}
 .grain{position:fixed;inset:0;z-index:-1;opacity:.45;pointer-events:none;background-image:radial-gradient(rgba(127,110,70,.16) 1px, transparent 1px);background-size:5px 5px}
 h1,h2,h3,.display{font-family:var(--display)}
@@ -114,12 +118,16 @@ h2{font-size:clamp(32px,4.6vw,44px);line-height:1.12;margin:0 0 14px;font-weight
 .tvrow.done .box{background:var(--mint);border-color:var(--mint)}
 .tvrow .due{color:var(--faint);font-size:16px}
 .tv .stand{width:170px;height:14px;background:var(--bgdeep);margin:10px auto 0;border-radius:0 0 12px 12px}
-.chip{position:absolute;padding:14px 18px;border-radius:16px;background:var(--panel);backdrop-filter:blur(var(--panelblur));border:1px solid var(--line);box-shadow:var(--shadow);font-size:17px;line-height:1.45;max-width:300px;text-align:left;z-index:3}
+.stage-in{display:flex;flex-direction:column;align-items:center}
+.chiprow{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;max-width:860px;margin-top:20px}
+@media (max-width:680px){.chiprow{grid-template-columns:1fr}}
+.chip{padding:16px 20px;border-radius:16px;background:var(--panel);backdrop-filter:blur(var(--panelblur));border:1px solid var(--line);box-shadow:var(--shadow);font-size:17px;line-height:1.5;text-align:left}
 .chip b{display:block;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
-.chip.ask{left:0;top:30px;transform:translateZ(70px)} .chip.ask b{color:var(--sky)}
-.chip.ring{right:0;bottom:40px;transform:translateZ(90px)} .chip.ring b{color:var(--mint)}
+.chip.ask b{color:var(--sky)}
+.chip.ring b{color:var(--mint)}
 .chip .ans{color:var(--gold)}
-@media (max-width:1120px){.chip{position:static;max-width:none;margin:12px 0;transform:none}.stage-in{transform:none!important}.flightpath{display:none}}
+.flightpath{z-index:-1}
+@media (max-width:680px){.flightpath{display:none}}
 
 /* v3.1 additions: skip link, scroll bee, typing, lab, toast */
 .skiplink{position:absolute;left:-999px;top:0;background:var(--gold);color:#1D1503;font-weight:800;padding:12px 20px;border-radius:0 0 14px 0;z-index:99}
@@ -137,7 +145,7 @@ h2{font-size:clamp(32px,4.6vw,44px);line-height:1.12;margin:0 0 14px;font-weight
 .lab textarea{width:100%;font-family:inherit;font-size:18.5px;line-height:1.55;padding:18px 20px;border-radius:16px;border:2px solid var(--line);background:var(--bgdeep);color:var(--ink);min-height:150px;resize:vertical}
 .labmem{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:16px}
 .memcard{border:1.5px solid var(--gold);border-radius:14px;padding:14px 16px;font-size:17px;background:var(--panel2);animation:pop .3s ease}
-.memcard b{display:block;font-size:12.5px;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:4px}
+.memcard b{display:block;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:4px}
 .labchips{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--gold);color:#1D1503;font-weight:800;font-size:17px;padding:13px 26px;border-radius:999px;opacity:0;pointer-events:none;transition:all .3s;z-index:90;box-shadow:var(--shadow)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -173,7 +181,7 @@ input[type=range]{flex:1;min-width:220px;accent-color:var(--gold);height:44px;cu
 [data-theme="paper"] .msg.q{background:linear-gradient(145deg,#3E6FA8,#2C5F9E)}
 [data-theme="glass"] .msg.q{background:rgba(139,233,253,.16);border:1px solid rgba(139,233,253,.35);color:var(--ink)}
 .msg.a{align-self:flex-start;background:var(--bgdeep);border:1px solid var(--line);border-bottom-left-radius:6px;color:var(--gold)}
-.msg .who{font-size:12.5px;letter-spacing:2px;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:5px}
+.msg .who{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:5px}
 .msg.q .who{color:#BCD3F5}.msg.a .who{color:var(--amber)}
 .qbtns{display:flex;flex-wrap:wrap;gap:10px}
 .qbtn{font-family:inherit;font-size:17.5px;font-weight:700;background:var(--bgdeep);color:var(--ink);border:2px solid var(--line);border-radius:999px;padding:11px 20px;cursor:pointer;min-height:48px;transition:all .15s}
@@ -193,11 +201,11 @@ input[type=range]{flex:1;min-width:220px;accent-color:var(--gold);height:44px;cu
 .dev h3{margin:12px 0 6px;font-size:24px;font-family:var(--display)}
 .dev p{color:var(--soft);font-size:17.5px;margin:0 0 10px}
 .dev .ex{font-size:16.5px;color:var(--gold);border-top:1px dashed var(--line);padding-top:10px}
-.dev .role{font-size:12.5px;letter-spacing:2px;text-transform:uppercase;color:var(--amber);font-weight:800}
+.dev .role{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--amber);font-weight:800}
 
 /* ============ ARTIFACTS ============ */
 .artifacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;margin-top:10px}
-.artifact{background:var(--paper);color:var(--paperink);border-radius:10px;padding:24px 24px 20px;box-shadow:var(--shadow);position:relative;transform:rotate(var(--rot,-1.2deg))}
+.artifact{background:var(--paper);color:var(--paperink);border-radius:10px;padding:24px 24px 52px;box-shadow:var(--shadow);position:relative;transform:rotate(var(--rot,-1.2deg))}
 .artifact:before{content:"";position:absolute;top:-13px;left:50%;transform:translateX(-50%) rotate(2deg);width:104px;height:26px;background:rgba(240,220,150,.75);border:1px dashed rgba(0,0,0,.14);border-radius:3px}
 .artifact h3{font-family:"Caveat",cursive;font-size:29px;margin:2px 0 8px;color:#7A4d12}
 .artifact p{font-size:17.5px;margin:0 0 8px;line-height:1.5}
@@ -273,7 +281,6 @@ footer{border-top:1px solid var(--line);margin-top:70px;padding:34px 22px 44px;t
 
     <div class="stage" id="stage">
       <div class="stage-in" id="stageIn">
-        <div class="chip ask"><b>🗣 You ask Alexa</b>“What did the doctor say about my next appointment?”<br><span class="ans">→ “Your blood pressure has improved and is now normal…”</span></div>
         <div class="tv">
           <div class="screen">
             <h3><span id="greet">Good morning</span>, Margaret ☀️</h3>
@@ -285,7 +292,10 @@ footer{border-top:1px solid var(--line);margin-top:70px;padding:34px 22px 44px;t
           </div>
           <div class="stand"></div>
         </div>
-        <div class="chip ring"><b>🔔 Ring · Front door</b>Package delivered — <span class="ans">Alexa announces it, and the list above ticks itself off.</span></div>
+        <div class="chiprow">
+          <div class="chip ask"><b>🗣 You ask Alexa</b>“What did the doctor say about my next appointment?”<br><span class="ans">→ “Your blood pressure has improved and is now normal…”</span></div>
+          <div class="chip ring"><b>🔔 Ring · Front door</b>Package delivered — <span class="ans">Alexa announces it, and the list above ticks itself off.</span></div>
+        </div>
       </div>
     </div>
 
@@ -493,6 +503,7 @@ footer{border-top:1px solid var(--line);margin-top:70px;padding:34px 22px 44px;t
   <section id="different" class="reveal">
     <p class="kicker">The honest comparison</p>
     <h2>Why this wins the day</h2>
+    <div class="tablewrap">
     <table>
       <tr><th></th><th>Reminder apps</th><th>Notes apps</th><th class="bb">BeeBridge</th></tr>
       <tr><td><b>Who does the work?</b></td><td>The senior types &amp; schedules</td><td>The senior writes it down</td><td><b>Nobody — captured from conversation</b></td></tr>
@@ -501,6 +512,7 @@ footer{border-top:1px solid var(--line);margin-top:70px;padding:34px 22px 44px;t
       <tr><td><b>Where memory lives</b></td><td>A company's cloud</td><td>A company's cloud</td><td><b>Your own computer, private by default</b></td></tr>
       <tr><td><b>New habit required</b></td><td>Yes — a whole app</td><td>Yes — note-taking</td><td><b>None. Talk, ask, glance.</b></td></tr>
     </table>
+    </div>
   </section>
 
   <!-- ============ JUDGES ============ -->
@@ -746,6 +758,5 @@ document.querySelectorAll('.tilt').forEach(card => {
   card.addEventListener('mouseleave', () => card.style.transform = '');
 });
 </script>
-</main>
 </body>
 </html>
