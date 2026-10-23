@@ -8,6 +8,9 @@ BeeBridge: A Memory Companion for Seniors
 ## Tagline
 Bee remembers the conversation. Alexa+ answers the question. Ring watches the door. BeeBridge connects all three into a second memory for seniors.
 
+## Live demo (hosted)
+https://msabhishek22.github.io/BeeBridge/ — interactive GitHub Pages demo (`docs/index.html`): tap-a-question answers from the real backend outputs, today's summary, Ring package simulation. Put this as the FIRST "Try it out" link on Devpost; repo second.
+
 ## Tracks / mini challenges to select
 - **Primary track: Alexa+** — DECIDED 2026-10-22. The submission's centrepiece is a self-hosted MCP server (spec 2025-11-25, Streamable HTTP) + Agent Skill answering from Bee memory (`src/beebridge/alexa/`). Rationale: $25,000 first prize vs Bee's $12,000, and the MCP server is fully judge-runnable evidence (see placement strategy below).
 - Data source, featured throughout: **Bee** (real Bee data via Bee CLI + Bee MCP + Bee sync exports — `src/beebridge/bee/`)

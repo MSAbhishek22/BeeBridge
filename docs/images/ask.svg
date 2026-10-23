@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420">
+  <rect width="1200" height="420" fill="#171310"/>
+  <text x="60" y="80" font-family="Georgia, serif" font-size="30" fill="#9DB8D9">YOU ASK ALEXA:</text>
+  <text x="60" y="140" font-family="Georgia, serif" font-size="38" fill="#FFFFFF">&#8220;What did the doctor say about my next appointment?&#8221;</text>
+  <text x="60" y="230" font-family="Georgia, serif" font-size="30" fill="#9DB8D9">BEEBRIDGE ANSWERS:</text>
+  <text x="60" y="290" font-family="Georgia, serif" font-size="34" fill="#F5C542">&#8220;Friday at 10 a.m. Your blood pressure has improved</text>
+  <text x="60" y="340" font-family="Georgia, serif" font-size="34" fill="#F5C542">and is now normal. Bring your blood sugar log.&#8221;</text>
+</svg>

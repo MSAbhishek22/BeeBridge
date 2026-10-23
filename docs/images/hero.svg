@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="480" viewBox="0 0 1200 480">
+  <rect width="1200" height="480" fill="#171310"/>
+  <text x="600" y="120" font-family="Georgia, serif" font-size="76" font-weight="bold" fill="#F5C542" text-anchor="middle">BeeBridge</text>
+  <text x="600" y="185" font-family="Georgia, serif" font-size="34" fill="#FFFFFF" text-anchor="middle">A second memory for the people you love</text>
+  <text x="600" y="270" font-family="Georgia, serif" font-size="26" fill="#E8DCC8" text-anchor="middle">Bee remembers the conversation.</text>
+  <text x="600" y="315" font-family="Georgia, serif" font-size="26" fill="#E8DCC8" text-anchor="middle">Alexa answers the question. Ring watches the door.</text>
+  <rect x="330" y="360" width="540" height="64" rx="32" fill="#F5C542"/>
+  <text x="600" y="402" font-family="Georgia, serif" font-size="26" font-weight="bold" fill="#171310" text-anchor="middle">Try the live demo — no install</text>
+</svg>

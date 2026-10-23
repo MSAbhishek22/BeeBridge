@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BeeBridge — A Memory Companion for Seniors</title>
+<style>
+  :root { --bg:#171310; --card:#241d17; --gold:#F5C542; --cream:#FFF8EC; --soft:#E8DCC8; --blue:#9DB8D9; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--cream); font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+  h1 { font-size: 56px; color: var(--gold); margin: 8px 0 4px; text-align:center; }
+  .tag { font-size: 26px; text-align:center; margin: 0 0 8px; }
+  .sub { font-size: 21px; color: var(--soft); text-align:center; line-height:1.5; margin: 0 auto 28px; max-width: 680px;}
+  .card { background: var(--card); border-radius: 18px; padding: 26px 28px; margin: 22px 0; }
+  .card h2 { font-size: 30px; margin: 0 0 14px; color: var(--gold); }
+  .card p, .card li { font-size: 22px; line-height: 1.55; }
+  .label { font-size: 17px; letter-spacing: 2px; color: var(--blue); text-transform: uppercase; margin-bottom: 8px;}
+  button.ask { display:block; width:100%; text-align:left; background:#31281e; color:var(--cream);
+    border:2px solid #4a3d2c; border-radius:14px; font-family:inherit; font-size:23px;
+    padding:16px 20px; margin:12px 0; cursor:pointer; }
+  button.ask:hover, button.ask:focus { border-color: var(--gold); }
+  #answer { font-size: 25px; line-height:1.55; color: var(--gold); min-height: 40px; }
+  .todo { font-size: 22px; padding: 10px 0; border-bottom: 1px solid #3a2f23; }
+  .todo .due { color: var(--soft); font-size: 19px; }
+  .done { color: #8FD18B; font-weight: bold; }
+  button.ring { background: var(--gold); color:#171310; border:none; border-radius: 999px;
+    font-family:inherit; font-size: 22px; font-weight:bold; padding: 14px 28px; cursor:pointer; margin-top: 10px;}
+  #ringout { font-size: 24px; color: var(--gold); margin-top: 14px; min-height: 30px;}
+  .steps { display:grid; gap:14px; }
+  .step { background:#31281e; border-radius:14px; padding:18px 20px; font-size:22px; line-height:1.5;}
+  .step b { color: var(--gold); }
+  a { color: var(--gold); }
+  .links { text-align:center; font-size: 21px; line-height: 2; }
+  footer { text-align:center; color: var(--soft); font-size: 17px; margin-top: 40px; line-height:1.6;}
+</style>
+</head>
+<body>
+<main>
+  <h1>🐝 BeeBridge</h1>
+  <p class="tag">A second memory for the people you love.</p>
+  <p class="sub">Dad forgets what the doctor said. Mum can't remember if the package came.
+  BeeBridge listens once — so they never have to remember alone again.</p>
+
+  <div class="card">
+    <div class="label">Try it — tap a question</div>
+    <h2>Ask Alexa, get an answer from real life</h2>
+    <button class="ask" data-k="doctor">🩺 “Alexa, what did the doctor say about my next appointment?”</button>
+    <button class="ask" data-k="meds">💊 “What medication do I need to take?”</button>
+    <button class="ask" data-k="family">👨‍👩‍👧 “What did my daughter say?”</button>
+    <button class="ask" data-k="day">☀️ “Can you summarize my day?”</button>
+    <p id="answer">Tap a question above — these answers come from the real BeeBridge software, run on its sample conversations.</p>
+  </div>
+
+  <div class="card">
+    <h2>Today, at a glance</h2>
+    <p id="todaysummary"></p>
+    <div id="todos"></div>
+  </div>
+
+  <div class="card">
+    <h2>Ring watches the door</h2>
+    <p>Bee heard on Tuesday: <i>“a package is expected tomorrow.”</i> When Ring sees it arrive,
+    Alexa announces it — and the reminder above completes itself.</p>
+    <button class="ring" id="ringbtn">🔔 Simulate: package delivered</button>
+    <p id="ringout"></p>
+  </div>
+
+  <div class="card">
+    <h2>How it works — in plain words</h2>
+    <div class="steps">
+      <div class="step"><b>1. Bee listens.</b> A small wearable remembers real conversations — the doctor, the pharmacist, the family call — only with consent.</div>
+      <div class="step"><b>2. BeeBridge tidies.</b> It picks out the things that matter: medicines, appointments, promises, deliveries.</div>
+      <div class="step"><b>3. You just ask.</b> Alexa+ answers in short, clear sentences. The day's summary waits on the TV in big, friendly letters.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>How BeeBridge is different</h2>
+    <p>Reminder apps make seniors type and schedule. BeeBridge needs <b>no typing, no scheduling, no new habit</b> —
+    the memory is captured from conversations they were already having. Notes apps store text; BeeBridge
+    <i>answers questions</i>. And the memory stays <b>private, on your own computer</b> — not in a company's cloud.</p>
+  </div>
+
+  <div class="card links">
+    <a href="https://github.com/MSAbhishek22/BeeBridge">📖 See how it's built (GitHub)</a><br>
+    <a href="https://github.com/MSAbhishek22/bee-memory-mcp">🌱 Our open-source gift: Bee Memory MCP</a><br>
+    <span style="color:var(--soft); font-size:19px;">Full working software — judges and developers can run it in two minutes from the README.</span>
+  </div>
+
+  <footer>
+    Built for the Amazon Developer Hackathon (Build, Ship, Shape) · Bee + Alexa+ + Ring + Fire TV + AWS Bedrock<br>
+    This page is a live, interactive preview using BeeBridge's bundled sample conversations.
+    The full software answers from a real Bee wearable.
+  </footer>
+</main>
+<script>
+const ANSWERS = {
+  doctor: "Friday at 10 a.m. Your blood pressure has improved and is now normal. Remember to bring your blood sugar log.",
+  meds: "Your follow-up appointment is on Friday at 10 a.m. Dr. Patel said your medication is Metformin 500 mg: take one tablet with breakfast every day. Vitamin D supplement: take one after dinner.",
+  family: "Mom called and said lunch is at her place on Sunday at 1 p.m. and Priya will bring dessert. Your daughter Priya called and said she'll visit on Sunday.",
+  day: "Today you have: Take one Metformin tablet with breakfast (every day); Package delivery expected (tomorrow). You had 3 conversations captured by Bee, most recently: Pharmacy refill pickup."
+};
+const TODOS = [
+  { text: "Take one Metformin tablet with breakfast", due: "every day", id: "med" },
+  { text: "Package delivery expected", due: "tomorrow", id: "pkg" }
+];
+document.querySelectorAll('button.ask').forEach(b => {
+  b.addEventListener('click', () => {
+    document.getElementById('answer').textContent = '“' + ANSWERS[b.dataset.k] + '”';
+  });
+});
+document.getElementById('todaysummary').textContent = ANSWERS.day;
+function renderTodos(donePkg) {
+  document.getElementById('todos').innerHTML = TODOS.map(t =>
+    '<div class="todo">' + (donePkg && t.id === 'pkg' ? '✅ ' : '⬜ ') + t.text +
+    ' <span class="due">(' + t.due + ')</span>' +
+    (donePkg && t.id === 'pkg' ? ' <span class="done">— Done ✓</span>' : '') + '</div>').join('');
+}
+renderTodos(false);
+document.getElementById('ringbtn').addEventListener('click', () => {
+  document.getElementById('ringout').textContent = '🔊 Alexa announces: “Your package has arrived.”';
+  renderTodos(true);
+});
+</script>
+</body>
+</html>
