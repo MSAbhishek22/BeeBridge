@@ -243,6 +243,10 @@ details{border-radius:16px;padding:18px 22px;margin:12px 0}
 summary{cursor:pointer;font-weight:800;font-size:19px;font-family:var(--display)}
 details p{color:var(--soft);font-size:17.5px;margin:10px 0 2px}
 footer{border-top:1px solid var(--line);margin-top:70px;padding:34px 22px 44px;text-align:center;color:var(--faint);font-size:16px;line-height:1.7}
+.hero3d-band{margin:34px auto 10px;max-width:980px}
+#hero3d{width:100%;height:340px;display:block;border-radius:18px;background:radial-gradient(circle at 50% 35%,#2a1c08,#171208 70%)}
+.hero3d-cap{color:var(--soft);font-size:16px;margin:12px auto 6px;max-width:640px}
+.scroll-cue{display:inline-block;margin-top:8px;color:var(--gold);font-weight:700;text-decoration:none}
 </style>
 </head>
 <body>
@@ -280,6 +284,12 @@ footer{border-top:1px solid var(--line);margin-top:70px;padding:34px 22px 44px;t
       <a class="btn ghost" href="#fade">See what forgetting looks like</a>
     </div>
     <p class="micro">No sign-up · No install · The demo below runs the real software's answers</p>
+
+    <div class="hero3d-band">
+      <canvas id="hero3d" aria-label="3D beehive: golden hex-cell lattice with an orbiting bee and pulsing memory nodes"></canvas>
+      <p class="hero3d-cap">The hive in 3D — every hexagon is a memory Bee keeps for you. Drag to look around.</p>
+      <a class="scroll-cue" href="#fade">↓ See what forgetting looks like</a>
+    </div>
 
     <div class="stage" id="stage">
       <div class="stage-in" id="stageIn">
@@ -762,5 +772,7 @@ document.querySelectorAll('.tilt').forEach(card => {
   card.addEventListener('mouseleave', () => card.style.transform = '');
 });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="hero3d.js" defer></script>
 </body>
 </html>
